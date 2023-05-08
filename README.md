@@ -3,7 +3,7 @@ CryptoPriceBot is a Telegram bot that provides real-time cryptocurrency price da
 
 ## Usage
 
-To use Crypto Bot, follow these steps:
+To use CryptoPriceBot, follow these steps:
 1. Clone this repository:
 ```
 git clone https://github.com/L1S69/CryptoPriceBot.git
