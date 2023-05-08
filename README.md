@@ -2,8 +2,9 @@
 CryptoPriceBot is a Telegram bot that provides real-time cryptocurrency price data from CoinGecko API. It is built with Python and the Telebot library.
 
 ## Usage
+You can find running instance of this bot [here](https://t.me/cryptOwObot).
 
-To use CryptoPriceBot, follow these steps:
+To create your own instance of CryptoPriceBot, follow these steps:
 1. Clone this repository:
 ```
 git clone https://github.com/L1S69/CryptoPriceBot.git
