@@ -14,7 +14,7 @@ cd CryptoPriceBot
 ```
 pip install -r requirements.txt
 ```
-3. Create a Telegram bot and set its token in the `bot.py` file. You can obtain a token by talking to the BotFather on Telegram.
+3. Create a Telegram bot and set its token in the `bot.py` file. You can obtain a token by talking to the [BotFather](https://t.me/BotFather) on Telegram.
 
 4. Run the bot:
 ```
