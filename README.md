@@ -28,4 +28,4 @@ We welcome contributions from the community. If you find a bug or have a feature
 
 ## License
 
-Crypto Bot is licensed under the MIT License. See `LICENSE` for more information.
+CryptoPriceBot is licensed under the MIT License. See `LICENSE` for more information.
