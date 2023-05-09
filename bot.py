@@ -6,7 +6,7 @@ import telebot # for creating Telegram bot
 # Telegram bot token obtained from BotFather
 token = "**********************************************"
 # Initialize the bot with the token
-qr_gen_bot = telebot.TeleBot(token)
+bot = telebot.TeleBot(token)
 
 keyboard = telebot.types.ReplyKeyboardMarkup(row_width=3)
 
@@ -40,7 +40,7 @@ def get_crypto_price(coin):
 @qr_gen_bot.message_handler(commands=["start", "help"])
 def send_welcome(message):
     # Send welcome message with custom keyboard
-    qr_gen_bot.send_message(message.chat.id,
+    bot.send_message(message.chat.id,
                             f"Hello, {message.from_user.first_name}, what cryptocurrency price are you interested in?",
                             reply_markup=keyboard)
 
@@ -55,7 +55,7 @@ def get_text_messages(message):
     price = data[1]
     
     # Send the cryptocurrency price to the user
-    qr_gen_bot.send_message(message.chat.id, f"The price of {coin} is ${price:.2f}", reply_markup=keyboard)
+    bot.send_message(message.chat.id, f"The price of {coin} is ${price:.2f}", reply_markup=keyboard)
 
 # Start the bot
-qr_gen_bot.infinity_polling()
+bot.infinity_polling()
