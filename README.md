@@ -11,34 +11,22 @@ To create your own instance of CryptoPriceBot, follow these steps:
 git clone https://github.com/L1S69/CryptoPriceBot.git
 cd CryptoPriceBot
 ```
-2. Install the necessary dependencies:
+2. Activate virtual environment:
 ```
-pip install -r requirements.txt
+source env/bin/activate
 
 ```
-4. If you don't have SQLite3 installed, install it. For examole, in Arch Linux it's done like this:
+4. If you don't have `SQLite3` installed, install it. For example, in Arch Linux it's done like this:
 ```
 sudo pacman -S sqlite3
 ```
-5. Create a new SQLite database:
-```
-sqlite3 preferences.db
-```
-6. Once inside the SQLite shell, run the following SQL command to create the user_preferences table:
-```
-CREATE TABLE user_preferences (chat_id INTEGER PRIMARY KEY, currency TEXT, language TEXT);
-```
-7. Exit the SQLite shell by running the following command:
-```
-.quit
-```
-8. Create a Telegram bot and set its token in the `bot.py` file. You can obtain a token by talking to the [BotFather](https://t.me/BotFather) on Telegram.
+5. Create a Telegram bot and set its token in the `bot.py` file. You can obtain a token by talking to the [BotFather](https://t.me/BotFather) on Telegram.
 
-9. Run the bot:
+6. Run the bot:
 ```
 python bot.py
 ```
-10. Open Telegram and start a chat with your bot. Select a cryptocurrency from the custom keyboard or type it manually to get its latest price data.
+7. Open Telegram and start a chat with your bot. Select a cryptocurrency from the custom keyboard or type it manually to get its latest price data.
 
 ## Contributions
 
