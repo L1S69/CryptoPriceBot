@@ -16,17 +16,17 @@ cd CryptoPriceBot
 source env/bin/activate
 
 ```
-4. If you don't have `SQLite3` installed, install it. For example, in Arch Linux it's done like this:
+3. If you don't have `SQLite3` installed, install it. For example, in Arch Linux it's done like this:
 ```
 sudo pacman -S sqlite3
 ```
-5. Create a Telegram bot and set its token in the `config.py` file. You can obtain a token by talking to the [BotFather](https://t.me/BotFather) on Telegram.
+4. Create a Telegram bot and set its token in the `config.py` file. You can obtain a token by talking to the [BotFather](https://t.me/BotFather) on Telegram.
 
-6. Run the bot:
+5. Run the bot:
 ```
 python bot.py
 ```
-7. Open Telegram and start a chat with your bot. Select a cryptocurrency from the custom keyboard or type it manually to get its latest price data.
+6. Open Telegram and start a chat with your bot. Select a cryptocurrency from the custom keyboard or type it manually to get its latest price data.
 
 ## Contributions
 
