@@ -20,7 +20,7 @@ source env/bin/activate
 ```
 sudo pacman -S sqlite3
 ```
-5. Create a Telegram bot and set its token in the `bot.py` file. You can obtain a token by talking to the [BotFather](https://t.me/BotFather) on Telegram.
+5. Create a Telegram bot and set its token in the `config.py` file. You can obtain a token by talking to the [BotFather](https://t.me/BotFather) on Telegram.
 
 6. Run the bot:
 ```
