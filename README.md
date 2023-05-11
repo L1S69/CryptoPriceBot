@@ -14,7 +14,6 @@ cd CryptoPriceBot
 2. Activate virtual environment:
 ```
 source env/bin/activate
-
 ```
 3. If you don't have `SQLite3` installed, install it. For example, in Arch Linux it's done like this:
 ```
