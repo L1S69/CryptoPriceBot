@@ -3,8 +3,8 @@ import telebot # Library for creating Telegram bot
 import config
 import dbmanager
 import cgapimanager
+import tlmanager
 import keyboards
-
 
 bot = telebot.TeleBot(config.token)
 
@@ -31,10 +31,10 @@ def send_settings(message):
     bot.register_next_step_handler(message, select_setting)
 
 def select_setting(message):
-    if message.text == 'Select language':
+    if message.text == "Select language":
         bot.send_message(message.chat.id, "Choose language", reply_markup=languages)
         bot.register_next_step_handler(message, set_language)
-    elif message.text == 'Select currency':
+    elif message.text == "Select currency":
         bot.send_message(message.chat.id, "What fiat currency do you want to view the prices in?", reply_markup=currencies)
         bot.register_next_step_handler(message, set_fiat_currency)
     else:
@@ -54,7 +54,7 @@ def set_language(message):
     if config.supported_languages[message.text]:
         dbmanager.set_data(message.chat.id, "language", config.supported_languages[message.text])
         # Notify user that his default fiat currency was changed
-        bot.send_message(message.chat.id, f"You've successfully set {message.text} as default fiat currency", reply_markup=cryptos)
+        bot.send_message(message.chat.id, f"You've successfully set {message.text} as default language", reply_markup=cryptos)
 
 # Handler for text messages received from users
 @bot.message_handler(content_types=["text"])
