@@ -1,3 +1,5 @@
+import dbmanager
+
 languages = {"en": [
              ["Hello, ", ", what cryptocurrency price are you interested in?"],
              "What settings do you want change?",
@@ -6,8 +8,9 @@ languages = {"en": [
              "Select currency",
              "What fiat currency do you want to view the prices in?",
              "An error has occurred?",
-             "You've successfully set 🇺🇸English as default language"
-             ["The price of ", " is "]
+             "You've successfully set 🇺🇸English as default language",
+             ["The price of ", " is "],
+             ["You've successfully set ", " as default fiat currency"]
              ],
              "ru": [
              ["Привет, ", ", стоимость какой криптовалюты тебя интересует?"],
@@ -17,8 +20,9 @@ languages = {"en": [
              "Выбрать валюту",
              "В какой фиатной валюте вы хотите видеть цены?",
              "Произошла ошибка?",
-             "Вы успешно установили 🇷🇺Русский как основной"
-             ["Цена ", " - "]
+             "Вы успешно установили 🇷🇺Русский как основной",
+             ["Цена ", " - "],
+             ["Вы успешно установили ", " как основную фиатную валюту"]
              ],
              "uk": [
              ["Привіт, ", ", ціна якої криптовалюти вас цікавить?"],
@@ -28,8 +32,9 @@ languages = {"en": [
              "Вибрати валюту",
              "У якій фіатній валюті ви хочете бачити ціни?",
              "Виникла помилка?",
-             "Ви успішно встановили 🇺🇦Українську як основну"
-             ["Ціна ", " - "]
+             "Ви успішно встановили 🇺🇦Українську як основну",
+             ["Ціна ", " - "],
+             ["Ви успішно встановили ", " як основну фіатну валюту"]
              ],
              "ja": [
              ["こんにちは、", "、どの暗号通貨の価格に興味があるのか？"],
@@ -37,8 +42,13 @@ languages = {"en": [
              "言語を選択する",
              "言語を選択する",
              "通貨を選択してください",
-             "価格を表示したい法定通貨は何ですか?",
+             "価格を表示したいフィアット通貨は何ですか?",
              "エラーが発生しました？",
-             "🇯🇵日本語をデフォルト言語として設定しました"
-             ["", "の価格は"]
+             "🇯🇵日本語をデフォルト言語として設定しました",
+             ["", "の価格は"],
+             ["", " をデフォルトフィアット通貨として設定しました"]
              ],} 
+
+def get_language(chat_id):
+    id = dbmanager.get_data(chat_id, "language", "en")
+    return languages[id]

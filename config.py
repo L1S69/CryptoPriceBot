@@ -7,4 +7,3 @@ supported_fiat_currencies = ["USD", "EUR", "RUB", "GPB", "UAH", "TRY", "TWD", "I
 supported_languages = {"🇺🇸English": "en", "🇷🇺Русский": "ru", "🇯🇵日本語": "ja", "🇺🇦Українська": "uk"}
 
 cryptos = ["BTC", "ETH", "LTC", "XRP", "BCH", "DOGE", "ADA", "DOT", "LINK"]
-settings = ["Select language", "Select currency"]
