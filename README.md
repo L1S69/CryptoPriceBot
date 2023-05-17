@@ -43,7 +43,7 @@ To make a custom translation for your Telegram bot, follow these steps:
 6. Save the file with the translated phrases.
 7. Open the `config.py` file in your project.
 8. Locate the `supported_languages` dictionary in the `config.py` file.
-9. Add an entry for your newly created language code and specify the language name as the key. For example, if you added a translation for French, you can add `"🇫🇷French": "fr"` to the `supported_languages` dictionary.
+9. Add an entry for your newly created language code and specify the language name as the key. For example, if you added a translation for French, you can add `"🇫🇷Français": "fr"` to the `supported_languages` dictionary.
 10. Save the `config.py` file.
 
 Once you have completed these steps, your bot will be able to use the custom translation for the specified language. You can now set the newly added language as the default language for your bot or allow users to select it using the available language selection functionality.
