@@ -67,12 +67,17 @@ def get_text_messages(message):
     lang = tlmanager.get_language(message.chat.id)
     data = cgapimanager.get_crypto_price(text, currency) # Call get_crypto_price function to get the cryptocurrency data
     
+    print(data)
     # Extract cryptocurrency ID and USD price from the data
     coin = data[0]
     price = data[1]
     
     # Send the cryptocurrency price to the user
-    bot.send_message(message.chat.id, f"{lang[8][0]}{coin}{lang[8][1]}{price:.2f} {currency}", reply_markup=cryptos)
+    reply = (f"{lang[8][0]}{coin}{lang[8][1]}{price:.2f} {currency}{lang[8][2]}\n"
+             f"{lang[10][0]}{data[2]} {currency}{lang[10][1]}\n"
+             f"{lang[11]}{data[3]} {currency}\n"
+             f"{lang[12][0]}{data[4]}%{lang[12][1]}")
+    bot.send_message(message.chat.id, reply, reply_markup=cryptos)
 
 # Start the bot
 bot.infinity_polling()

@@ -7,6 +7,9 @@
     "What fiat currency do you want to view the prices in?",
     "An error has occurred?",
     "You've successfully set 🇺🇸English as default language",
-    ["The price of ", " is "],
-    ["You've successfully set ", " as default fiat currency"]
+    ["The price of ", " is ", ""],
+    ["You've successfully set ", " as default fiat currency"],
+    ["it has a market capitalization of ", ""],
+    "it's trading volume is ",
+    ["its price has changed by ", " in the last 24 hours"]
 ] 
