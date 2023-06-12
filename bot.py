@@ -30,6 +30,23 @@ def send_settings(message):
     lang = tlmanager.get_language(message.chat.id)
     bot.send_message(message.chat.id, lang[1], reply_markup=keyboards.create_keyboard(2, [lang[2], lang[4]]))
     bot.register_next_step_handler(message, select_setting)
+    
+# Handler for /convert command
+@bot.message_handler(commands=["convert"])
+def send_settings(message):
+    lang = tlmanager.get_language(message.chat.id)
+    if len(message.text.split()) < 2:
+        bot.send_message(message.chat.id, lang[13], reply_markup=cryptos) 
+    else:
+        args = message.text.split()[1:]
+        amount = int(args[0])
+        from_curr = args[1]
+        to_curr = args[2]
+        conversion_result = cgapimanager.perform_currency_conversion(amount, from_curr.lower(), to_curr.lower())
+        if (conversion_result == 'error'):
+            bot.send_message(message.chat.id, lang[13], reply_markup=cryptos) 
+        else:
+            bot.send_message(message.chat.id, f"{amount}{from_curr.upper()}{lang[14][0]}{conversion_result:.2f}{to_curr.upper()}{lang[14][1]}", reply_markup=cryptos)
 
 def select_setting(message):
     lang = tlmanager.get_language(message.chat.id)
@@ -73,9 +90,9 @@ def get_text_messages(message):
     price = data[1]
     
     # Send the cryptocurrency price to the user
-    reply = (f"{lang[8][0]}{coin}{lang[8][1]}{price:.2f} {currency}{lang[8][2]}\n"
-             f"{lang[10][0]}{data[2]} {currency}{lang[10][1]}\n"
-             f"{lang[11]}{data[3]} {currency}\n"
+    reply = (f"{lang[8][0]}{coin}{lang[8][1]}{price:.2f}{currency}{lang[8][2]}\n"
+             f"{lang[10][0]}{data[2]}{currency}{lang[10][1]}\n"
+             f"{lang[11]}{data[3]}{currency}\n"
              f"{lang[12][0]}{data[4]}%{lang[12][1]}")
     bot.send_message(message.chat.id, reply, reply_markup=cryptos)
 

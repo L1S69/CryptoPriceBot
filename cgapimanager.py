@@ -20,3 +20,29 @@ def get_crypto_price(coin: str, currency: str):
     # You can fetch other market data fields similarly
     
     return [id, price, market_cap, volume, percent_change_24h] # Return the cryptocurrency ID and default fiat currency price in a list 
+
+def perform_currency_conversion(amount: int, from_curr: str, to_curr: str):
+    coins = [x["symbol"] for x in cg.get_coins_list()]
+    vs_currs = cg.get_supported_vs_currencies()
+    
+    if (from_curr in coins and to_curr in coins):
+        from_curr_usd_price = get_crypto_price(from_curr, "usd")[1]
+        to_curr_usd_price = get_crypto_price(to_curr, "usd")[1]
+        conversion_rate = from_curr_usd_price/to_curr_usd_price
+        
+    elif (from_curr in coins and to_curr in vs_currs):
+        conversion_rate = get_crypto_price(from_curr, to_curr)[1]
+        
+    elif (from_curr in vs_currs and to_curr in coins):
+        conversion_rate = 1/get_crypto_price(to_curr, from_curr)[1]
+        
+    elif (from_curr in vs_currs and to_curr in vs_currs):
+        from_curr_usdt_price = get_crypto_price("usdt", from_curr)[1]
+        to_curr_usdt_price = get_crypto_price("usdt", to_curr)[1]
+        conversion_rate = to_curr_usdt_price/from_curr_usdt_price
+        
+    else:
+        return "error"
+    
+    
+    return amount * conversion_rate
