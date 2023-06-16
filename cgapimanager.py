@@ -27,9 +27,12 @@ def get_crypto_price(coin: str, currency: str, get_additional_info: bool):
             percent_change_24h]  # Return the cryptocurrency ID and default fiat currency price in a list
 
 
-def perform_currency_conversion(amount: int, from_curr: str, to_curr: str):
+def perform_currency_conversion(amount: float, from_curr: str, to_curr: str):
     coins = [x["symbol"] for x in cg.get_coins_list()]
     vs_currs = cg.get_supported_vs_currencies()
+
+    from_curr = from_curr.lower()
+    to_curr = to_curr.lower()
 
     if from_curr in coins and to_curr in coins:
         from_curr_usd_price = get_crypto_price(from_curr, "usd", False)
@@ -48,6 +51,6 @@ def perform_currency_conversion(amount: int, from_curr: str, to_curr: str):
         conversion_rate = to_curr_usdt_price / from_curr_usdt_price
 
     else:
-        return "error"
+        raise ValueError()
 
     return amount * conversion_rate

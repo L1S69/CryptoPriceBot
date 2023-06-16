@@ -45,13 +45,13 @@ def send_settings(message):
         amount = int(args[0])
         from_curr = args[1]
         to_curr = args[2]
-        conversion_result = cgapimanager.perform_currency_conversion(amount, from_curr.lower(), to_curr.lower())
-        if conversion_result == 'error':
-            bot.send_message(message.chat.id, lang[13], reply_markup=cryptos)
-        else:
+        try:
+            conversion_result = cgapimanager.perform_currency_conversion(amount, from_curr, to_curr)
             bot.send_message(message.chat.id,
-                             f"{amount}{from_curr.upper()}{lang[14][0]}{conversion_result:.2f}{to_curr.upper()}{lang[14][1]}",
-                             reply_markup=cryptos)
+                                f"{amount}{from_curr.upper()}{lang[14][0]}{conversion_result:.2f}{to_curr.upper()}{lang[14][1]}",
+                                reply_markup=cryptos)
+        except ValueError:
+            bot.send_message(message.chat.id, lang[13], reply_markup=cryptos)
 
 
 def select_setting(message):
