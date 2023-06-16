@@ -1,9 +1,11 @@
 import telebot  # Library for creating Telegram bot
+import os
 
 import config
 import dbmanager
 import cgapimanager
 import tlmanager
+import graphmanager
 import keyboards
 
 bot = telebot.TeleBot(config.token)
@@ -48,8 +50,8 @@ def send_settings(message):
         try:
             conversion_result = cgapimanager.perform_currency_conversion(amount, from_curr, to_curr)
             bot.send_message(message.chat.id,
-                                f"{amount}{from_curr.upper()}{lang[14][0]}{conversion_result:.2f}{to_curr.upper()}{lang[14][1]}",
-                                reply_markup=cryptos)
+                             f"{amount}{from_curr.upper()}{lang[14][0]}{conversion_result:.2f}{to_curr.upper()}{lang[14][1]}",
+                             reply_markup=cryptos)
         except ValueError:
             bot.send_message(message.chat.id, lang[13], reply_markup=cryptos)
 
@@ -96,16 +98,26 @@ def get_text_messages(message):
                                          currency, True)
     # Call get_crypto_price function to get the cryptocurrency data
 
-    # Extract cryptocurrency ID and USD price from the data
+    # Extract cryptocurrency ID and USD price and other data from the list
     coin = data[0]
     price = data[1]
 
+    market_cap = data[2]
+    volume = data[3]
+    percent_change = data[4]
+
+    timestamps = data[5]
+    prices = data[6]
+
+    graph = graphmanager.generate_price_change_graph(timestamps, prices, message.chat.id)
+
     # Send the cryptocurrency price to the user
     reply = (f"{lang[8][0]}{coin}{lang[8][1]}{price:.2f}{currency}{lang[8][2]}\n"
-             f"{lang[10][0]}{data[2]}{currency}{lang[10][1]}\n"
-             f"{lang[11]}{data[3]}{currency}\n"
-             f"{lang[12][0]}{data[4]}%{lang[12][1]}")
-    bot.send_message(message.chat.id, reply, reply_markup=cryptos)
+             f"{lang[10][0]}{market_cap}{currency}{lang[10][1]}\n"
+             f"{lang[11]}{volume}{currency}\n"
+             f"{lang[12][0]}{percent_change}%{lang[12][1]}")
+    bot.send_photo(message.chat.id, photo=open(graph, "rb"), caption=reply, reply_markup=cryptos)
+    os.remove(graph)
 
 
 # Start the bot

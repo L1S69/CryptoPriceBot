@@ -23,8 +23,14 @@ def get_crypto_price(coin: str, currency: str, get_additional_info: bool):
     percent_change_24h = market_data['price_change_percentage_24h']  # Percentage change in price in the last 24 hours
     # You can fetch other market data fields similarly
 
+    price_data = cg.get_coin_market_chart_by_id(coin_id, currency, 1)
+    # Extract the timestamps and prices from the price data
+    timestamps = [timestamp[0] / 1000 for timestamp in price_data["prices"]]
+    prices = [timestamp[1] / 1000 for timestamp in price_data["prices"]]
+
     return [coin_id, price, market_cap, volume,
-            percent_change_24h]  # Return the cryptocurrency ID and default fiat currency price in a list
+            percent_change_24h, timestamps, prices]
+    # Return the cryptocurrency ID and default fiat currency price in a list
 
 
 def perform_currency_conversion(amount: float, from_curr: str, to_curr: str):
