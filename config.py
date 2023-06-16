@@ -1,5 +1,5 @@
 # Telegram bot token obtained from BotFather
-token = "**********************************************" 
+token = "**********************************************"
 
 # Fiat currencies that are supported
 supported_fiat_currencies = ["USD", "EUR", "RUB", "GPB", "UAH", "TRY", "TWD", "INR", "ILS", "JPY"]
