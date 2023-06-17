@@ -109,7 +109,7 @@ def get_text_messages(message):
     timestamps = data[5]
     prices = data[6]
 
-    graph = graphmanager.generate_price_change_graph(timestamps, prices, message.chat.id)
+    graph = graphmanager.generate_price_change_graph(timestamps, prices, percent_change > 0, message.chat.id, lang)
 
     # Send the cryptocurrency price to the user
     reply = (f"{lang[8][0]}{coin}{lang[8][1]}{price:.2f}{currency}{lang[8][2]}\n"

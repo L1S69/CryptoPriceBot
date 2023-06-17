@@ -17,10 +17,10 @@ def get_crypto_price(coin: str, currency: str, get_additional_info: bool):
         return price
 
     coin_data = cg.get_coin_by_id(id=coin_id)
-    market_data = coin_data['market_data']
-    market_cap = market_data['market_cap'][currency]  # Market capitalization in USD
-    volume = market_data['total_volume'][currency]  # Trading volume in USD
-    percent_change_24h = market_data['price_change_percentage_24h']  # Percentage change in price in the last 24 hours
+    market_data = coin_data["market_data"]
+    market_cap = market_data["market_cap"][currency]  # Market capitalization in USD
+    volume = market_data["total_volume"][currency]  # Trading volume in USD
+    percent_change_24h = market_data["price_change_percentage_24h"]  # Percentage change in price in the last 24 hours
     # You can fetch other market data fields similarly
 
     price_data = cg.get_coin_market_chart_by_id(coin_id, currency, 1)

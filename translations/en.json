@@ -13,5 +13,6 @@
     "it's trading volume is ",
     ["its price has changed by ", " in the last 24 hours"],
     "To use /convert command you should provide valid arguments\ne.g /convert 100 ils doge",
-    [" is ", ""]
-] 
+    [" is ", ""],
+    ["Time", "Price", "24-Hour Price Change"]
+]
