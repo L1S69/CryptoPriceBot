@@ -11,7 +11,7 @@ for file in os.listdir("translations/"):
             f.read())  # Store language translations in the dictionary using file name as the key
 
 
-def get_language(chat_id):
+def get_language(chat_id: int):
     lang_id = dbmanager.get_data(chat_id, "language",
                                  "en")  # Get the language preference for the given chat_id from the database
     return languages[lang_id]  # Return the language translations corresponding to the language id

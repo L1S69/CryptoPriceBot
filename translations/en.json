@@ -14,5 +14,8 @@
     ["its price has changed by ", " in the last 24 hours"],
     "To use /convert command you should provide valid arguments\ne.g /convert 100 ils doge",
     [" is ", ""],
-    ["Time", "Price", "24-Hour Price Change"]
+    ["Time", "Price", "24-Hour Price Change"],
+    "Select theme",
+    "Choose theme",
+    ["You've successfully set ", " as your theme"]
 ]

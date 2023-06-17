@@ -4,6 +4,7 @@ import os
 import config
 import dbmanager
 import cgapimanager
+import thememanager
 import tlmanager
 import graphmanager
 import keyboards
@@ -16,6 +17,7 @@ cryptos = keyboards.create_keyboard(3, config.cryptos)
 # Create custom keyboards for Settings
 currencies = keyboards.create_keyboard(2, config.supported_fiat_currencies)
 languages = keyboards.create_keyboard(2, list(config.supported_languages.keys()))
+themes = keyboards.create_keyboard(2, list(thememanager.themes.keys()))
 
 
 # Handler for /start and /help commands
@@ -32,7 +34,7 @@ def send_welcome(message):
 @bot.message_handler(commands=["settings"])
 def send_settings(message):
     lang = tlmanager.get_language(message.chat.id)
-    bot.send_message(message.chat.id, lang[1], reply_markup=keyboards.create_keyboard(2, [lang[2], lang[4]]))
+    bot.send_message(message.chat.id, lang[1], reply_markup=keyboards.create_keyboard(1, [lang[2], lang[4], lang[16]]))
     bot.register_next_step_handler(message, select_setting)
 
 
@@ -64,6 +66,9 @@ def select_setting(message):
     elif message.text == lang[4]:
         bot.send_message(message.chat.id, lang[5], reply_markup=currencies)
         bot.register_next_step_handler(message, set_fiat_currency)
+    elif message.text == lang[16]:
+        bot.send_message(message.chat.id, lang[17], reply_markup=themes)
+        bot.register_next_step_handler(message, set_theme)
     else:
         bot.send_message(message.chat.id, lang[6], reply_markup=cryptos)
 
@@ -75,6 +80,18 @@ def set_fiat_currency(message):
         dbmanager.set_data(message.chat.id, "currency", fiat_currency)
         # Notify user that his default fiat currency was changed
         bot.send_message(message.chat.id, f"{lang[9][0]}{fiat_currency}{lang[9][1]}", reply_markup=cryptos)
+    else:
+        # Notify user that his default fiat currency was NOT changed
+        bot.send_message(message.chat.id, lang[6], reply_markup=cryptos)
+
+
+def set_theme(message):
+    lang = tlmanager.get_language(message.chat.id)
+    if message.text in thememanager.themes.keys():
+        theme = message.text
+        dbmanager.set_data(message.chat.id, "theme", theme)
+        # Notify user that his default fiat currency was changed
+        bot.send_message(message.chat.id, f"{lang[18][0]}{theme}{lang[18][1]}", reply_markup=cryptos)
     else:
         # Notify user that his default fiat currency was NOT changed
         bot.send_message(message.chat.id, lang[6], reply_markup=cryptos)

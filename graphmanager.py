@@ -1,15 +1,18 @@
 import matplotlib.pyplot as plt
+import thememanager
 
 
-def generate_price_change_graph(timestamps, prices, had_price_grown, chat_id, language):
+def generate_price_change_graph(timestamps, prices, had_price_grown: bool, chat_id: int, language: list[str]):
+    theme = thememanager.get_theme(chat_id)
+
     # Set graph color to green or red depending on price change
     if had_price_grown:
-        graph_color = "#a6e3a1"
+        graph_color = theme["green"]
     else:
-        graph_color = "#f38ba8"
+        graph_color = theme["red"]
 
-    text_color = "#cdd6f4"
-    background_color = "#1e1e2e"
+    text_color = theme["text"]
+    background_color = theme["base"]
 
     # Generate price change graph
     fig = plt.figure()
@@ -39,5 +42,4 @@ def generate_price_change_graph(timestamps, prices, had_price_grown, chat_id, la
     graph_filename = f"{chat_id}.jpg"
     plt.savefig(graph_filename)
     plt.close()
-
     return graph_filename
